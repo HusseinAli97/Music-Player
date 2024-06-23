@@ -19,9 +19,7 @@ body {
 }
 
 #marq {
-  max-width: 25%;
   font-variant: small-caps;
-
 }
 
 .music-container {
@@ -123,6 +121,7 @@ body {
     transform: translateY(0%);
     transition: transform 0.3s ease-in, opacity 0.3s ease-in;
     z-index: 0;
+    
   }
 
   .music-container.play .music-info {
@@ -139,14 +138,28 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px 0;
-    height: 4px;
+    height: 7px;
     width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .progress {
-    background-color: #fe8daa;
+    background-color: #f71f55;
     border-radius: 5px;
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
+    align-self: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+  .progress-container::after {
+    content: "";
+    width: 15px;
+    position: relative;
+    background-color: #f2043f;
+    border-radius: 50%;
+    margin: 0 -4px;
+    height: 15px;
   }

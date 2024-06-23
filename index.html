@@ -13,22 +13,24 @@
     <title>Music Player</title>
   </head>
   <body>
-    <marquee id="marq">
       <h1>Music Name</h1>
-    </marquee>
 
     <div class="music-container" id="music-container">
       <div class="music-info">
-        <h4 id="title"></h4>
+        <marquee id="marq" scrollamount="2" scrolldelay="100">
+          <h4 id="title"></h4>
+        </marquee>
         <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
+          <div class="progress" id="progress">
+          </div>
+
         </div>
       </div>
 
-      <audio src="music/ukulele.mp3" id="audio"></audio>
+      <audio src="music/Menshawy.mp3" id="audio"></audio>
 
       <div class="img-container">
-        <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
+        <img src="images/ukulele.jpg" alt="music-cover"  id="cover" />
       </div>
       <div class="navigation">
         <button id="prev" class="action-btn">
