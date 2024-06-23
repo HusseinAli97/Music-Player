@@ -13,7 +13,7 @@ const cover = document.getElementById("cover");
 const tracks = [];
 
 //Keep track
-let trackIndex = 2;
+let trackIndex = 0;
 cover.src = 'images/summer.jpg'
 
 // darg
@@ -27,6 +27,7 @@ dropZone.addEventListener("dragleave", () => {
 });
 
 function handleFileSelect(items) {
+    console.log(items);
     for (let i = 0; i < items.length; i++) {
         const entry = items[i].webkitGetAsEntry();
         if (entry) {
@@ -67,7 +68,7 @@ dropZone.addEventListener("drop", (event) => {
     handleFileSelect(items);
 });
 function loadTrack(track) {
-    const { name, url,  } = track;
+    const { name, url} = track;
     title.innerText = name;
     audio.src = url; // Directly assign the URL created with createObjectURL
 }
