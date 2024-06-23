@@ -97,69 +97,92 @@ body {
 
 .action-btn:hover,
 .action-btn.action-btn-big:hover {
-    color: #fe8daa;
-  }
+  color: #fe8daa;
+}
 
-  .action-btn.action-btn-big {
-    color: #cdc2d0;
-    font-size: 30px;
-  }
+.action-btn.action-btn-big {
+  color: #cdc2d0;
+  font-size: 30px;
+}
 
-  .action-btn:focus {
-    outline: 0;
-  }
+.action-btn:focus {
+  outline: 0;
+}
 
-  .music-info {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px 15px 0 0;
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: calc(100% - 40px);
-    padding: 10px 10px 10px 150px;
-    opacity: 0;
-    transform: translateY(0%);
-    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-    z-index: 0;
-    
-  }
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
 
-  .music-container.play .music-info {
-    opacity: 1;
-    transform: translateY(-100%);
-  }
+}
 
-  .music-info h4 {
-    margin: 0;
-  }
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
 
-  .progress-container {
-    background: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px 0;
-    height: 7px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
+.music-info h4 {
+  margin: 0;
+}
 
-  .progress {
-    background-color: #f71f55;
-    border-radius: 5px;
-    height: 100%;
-    width: 0%;
-    transition: width 0.1s linear;
-    align-self: flex-start;
-    position: relative;
-    z-index: 1;
-  }
-  .progress-container::after {
-    content: "";
-    width: 15px;
-    position: relative;
-    background-color: #f2043f;
-    border-radius: 50%;
-    margin: 0 -4px;
-    height: 15px;
-  }
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 7px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.progress {
+  background-color: #f71f55;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+  align-self: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-container::after {
+  content: "";
+  width: 15px;
+  position: relative;
+  background-color: #f2043f;
+  border-radius: 50%;
+  margin: 0 -4px;
+  height: 15px;
+}
+
+#dropZone {
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #f9f9f9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+}
+#dropZone.dragover {
+  border-color: #000;
+  color: #000;
+
+}
+.none {
+  display: none !important;
+}

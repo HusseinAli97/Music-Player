@@ -5,33 +5,78 @@ const nextBtn = document.getElementById("next");
 const audio = document.getElementById("audio");
 const progress = document.getElementById("progress");
 const progressContainer = document.getElementById("progress-container");
+const container = document.querySelector(".container");
 const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 
 // Titles
-const tracks = ["Al-Najm", "Al-Zumor", "Menshawy"];
+const tracks = [];
 
 //Keep track
-let trackIndex = 1;
+let trackIndex = 2;
+cover.src = 'images/summer.jpg'
 
-//initially load details
-loadTrack(tracks[trackIndex]);
+// darg
+dropZone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    dropZone.classList.add("dragover");
+});
 
-function loadTrack(track) {
-    title.innerText = track;
-    audio.src = `music/${track}.mp3`;
-    cover.src = `images/${track}.jpg`;
-    cover.addEventListener("error", () => {
-        cover.src = `images/summer.jpg`;
-    });
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("dragover");
+});
+
+function handleFileSelect(items) {
+    for (let i = 0; i < items.length; i++) {
+        const entry = items[i].webkitGetAsEntry();
+        if (entry) {
+            traverseEntry(entry);
+        }
+    }
 }
 
+function traverseEntry(entry) {
+    if (entry.isFile) {
+        entry.file((file) => {
+            if (file.type.startsWith("audio/")) {
+                const track = {
+                    name: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension from name
+                    url: URL.createObjectURL(file),
+                };
+                tracks.push(track);
+            }
+        });
+    } else if (entry.isDirectory) {
+        const directoryReader = entry.createReader();
+        directoryReader.readEntries((entries) => {
+            for (let j = 0; j < entries.length; j++) {
+                traverseEntry(entries[j]);
+            }
+        });
+    }
+}
+
+// Modified drop event listener
+dropZone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    dropZone.classList.remove("dragover");
+    dropZone.classList.add("none");
+    container.setAttribute("style", "block");
+
+    const items = event.dataTransfer.items;
+    handleFileSelect(items);
+});
+function loadTrack(track) {
+    const { name, url,  } = track;
+    title.innerText = name;
+    audio.src = url; // Directly assign the URL created with createObjectURL
+}
 function togglePlaying() {
     const isPlaying = musicContainer.classList.toggle("play");
-    console.log(isPlaying);
     playBtn.querySelector("i.fas").classList.toggle("fa-play", !isPlaying);
     playBtn.querySelector("i.fas").classList.toggle("fa-pause", isPlaying);
     if (isPlaying) {
+        loadTrack(tracks[trackIndex]);
         audio.play();
     } else {
         audio.pause();
@@ -41,10 +86,8 @@ playBtn.addEventListener("click", togglePlaying);
 
 function prevTrack() {
     trackIndex--;
-    console.log(trackIndex);
     if (trackIndex < 0) {
         trackIndex = tracks.length - 1;
-        console.log(trackIndex);
     }
     playing(trackIndex);
 }
@@ -56,7 +99,7 @@ function nextTrack() {
     playing(trackIndex);
 }
 function playing(trackIndex) {
-    loadTrack(tracks[trackIndex]);
+    loadTrack(tracks[trackIndex])
     audio.play();
 }
 
