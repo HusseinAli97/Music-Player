@@ -59,6 +59,7 @@ body {
   bottom: 0;
   left: 0;
   animation: rotate 3s linear infinite;
+  z-index: 4;
 
   animation-play-state: paused;
 }
@@ -81,7 +82,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 4;
 }
 
 .action-btn {
@@ -120,8 +121,7 @@ body {
   opacity: 0;
   transform: translateY(0%);
   transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-  z-index: 0;
-
+  z-index: ;
 }
 
 .music-container.play .music-info {
@@ -142,6 +142,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 .progress {
@@ -163,6 +164,7 @@ body {
   border-radius: 50%;
   margin: 0 -4px;
   height: 15px;
+  z-index: 1;
 }
 
 #dropZone {
